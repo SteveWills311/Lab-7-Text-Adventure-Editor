@@ -1,0 +1,71 @@
+Steve Wills
+Algorithm/pseudocode for text adventure editor
+
+import json
+#game.json is file
+
+main()
+	game = getDefaultGame 
+	keepGoing loop
+	menuChoice = getMenuChoice
+	#calls a menu
+	if menuChoice == "0":
+	keepGoing = False
+	elifs for remaining 1-5 for different portions of program.
+	else print choose 0-5
+getMenuChoice()
+	keepGoing loop
+	prints a menu of user options
+	return menuChoice
+
+playGame(game)
+	#plays the game
+	currentGame = "start"
+	keepGoing loop
+	currentGame = playNode (game, currentGame)
+	Keeps going until next node is "quit"
+
+playNode(game, currentGame)
+	(desc, menuA, nodeA, menuB, nodeB) = game[currentGame]
+	keepGoing
+	print menus
+	given the game data and a node,
+	plays out the node
+	returns the next node
+
+getDefaultGame()
+	game = {
+	"start": ["start or quit? Thought there was more?!", "Start over", "start", "Quit", "quit"]}
+	return game
+
+editNode(game)
+	#given the current game structure...
+	print current nodes
+	print (json.dumps(game, indent=2))
+	get a node name
+	if that node exists
+	copy that node to newNode
+	otherwise...
+	create newNode with empty data
+	use editField() to allow user to edit each node
+	return the now edited newNode
+
+editField(prompt, currentValue)
+	newValue = input(f"{prompt} ({currentValue}): "
+	if newValue == ""
+		newValue = currentValue
+	return newValue
+
+saveGame(game)
+	filename = "game.json"
+	saveFile = open(fileName, "w")
+	json.dump(game, saveFile, indent = 2)
+	saveFile.close()
+	return game
+
+loadGame()
+	filename = game.json
+	loadFile = open(fileName, "r")
+	game = json.load(loadFile)
+	loadFile.close()
+	return game
